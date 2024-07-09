@@ -4,6 +4,7 @@ import Job from "./Job";
 import { HeartFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { addJobsToArray } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
@@ -25,7 +26,7 @@ const MainSearch = () => {
       if (response.ok) {
         const { data } = await response.json();
         setJobs(data);
-        dispatch({ type: "ADD_JOBS_TO_ARRAY", payload: data });
+        dispatch(addJobsToArray(data));
       } else {
         alert("Error fetching results");
       }

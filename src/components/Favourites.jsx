@@ -2,6 +2,7 @@ import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Trash2Fill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeFavourite } from "../redux/actions";
 
 const Favourites = () => {
   const favouriteElements = useSelector((state) => state.preferiti.content);
@@ -24,7 +25,7 @@ const Favourites = () => {
                 <div
                   className="btn btn-outline-danger"
                   onClick={() => {
-                    dispatch({ type: "REMOVE_TO_FAVOURITES", payload: index });
+                    dispatch(removeFavourite(index));
                   }}
                 >
                   <Trash2Fill />
