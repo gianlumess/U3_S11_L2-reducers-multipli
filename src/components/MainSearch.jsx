@@ -4,7 +4,7 @@ import Job from "./Job";
 import { HeartFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addJobsToArrayAction, addQueryValue } from "../redux/actions";
+import { addJobsToArrayAction, addQueryValue, getJobsAction } from "../redux/actions";
 
 const MainSearch = () => {
   /*   const [query, setQuery] = useState("");
@@ -23,6 +23,7 @@ const MainSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    /* getJobsAction(query); */
 
     try {
       const response = await fetch(baseEndpoint + query + "&limit=20");
