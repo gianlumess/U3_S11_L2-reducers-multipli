@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import { HeartFill } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addFavourite } from "../redux/actions";
+import { addFavouriteAction } from "../redux/actions";
 
 const Job = ({ data }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Job = ({ data }) => {
         <div
           className="btn btn-outline-success"
           onClick={() => {
-            dispatch(addFavourite(data.company_name));
+            dispatch(addFavouriteAction(data.company_name));
           }}
         >
           <HeartFill />
