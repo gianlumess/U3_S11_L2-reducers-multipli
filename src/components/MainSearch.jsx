@@ -1,42 +1,25 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import Job from "./Job";
 import { HeartFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addJobsToArrayAction, addQueryValue, getJobsAction } from "../redux/actions";
+import { getJobsAction } from "../redux/actions";
+import Job from "./Job";
 
 const MainSearch = () => {
-  /*   const [query, setQuery] = useState("");
-   */ const [jobs, setJobs] = useState([]);
-  const favouritesLength = useSelector((state) => state.preferiti.content.length);
+  const [query, setQuery] = useState("");
+  /*   const [jobs, setJobs] = useState([]);
+   */ const favouritesLength = useSelector((state) => state.preferiti.content.length);
+  const jobs = useSelector((state) => state.jobs.content);
   const dispatch = useDispatch();
-  const query = useSelector((state) => state.jobs.query);
-  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
-  /* const handleChange = (e) => {
-    setQuery(e.target.value);
-  }; */
   const handleChange = (e) => {
-    dispatch(addQueryValue(e.target.value));
+    setQuery(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    /* getJobsAction(query); */
-
-    try {
-      const response = await fetch(baseEndpoint + query + "&limit=20");
-      if (response.ok) {
-        const { data } = await response.json();
-        setJobs(data);
-        dispatch(addJobsToArrayAction(data));
-      } else {
-        alert("Error fetching results");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(getJobsAction(query));
   };
 
   return (

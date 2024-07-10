@@ -1,8 +1,7 @@
-import { ADD_JOBS_TO_ARRAY, ADD_QUERY_VALUE } from "../actions";
+import { ADD_JOBS_TO_ARRAY } from "../actions";
 
 const initialState = {
   content: [],
-  query: "",
 };
 
 const jobsReducer = (state = initialState, action) => {
@@ -11,12 +10,7 @@ const jobsReducer = (state = initialState, action) => {
       return {
         ...state,
 
-        content: [...state.content, action.payload],
-      };
-    case ADD_QUERY_VALUE:
-      return {
-        ...state,
-        query: action.payload,
+        content: action.payload,
       };
     default:
       return state;

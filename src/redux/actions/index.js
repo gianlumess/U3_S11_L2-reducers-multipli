@@ -1,7 +1,6 @@
 export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
 export const REMOVE_TO_FAVOURITES = "REMOVE_TO_FAVOURITES";
 export const ADD_JOBS_TO_ARRAY = "ADD_JOBS_TO_ARRAY";
-export const ADD_QUERY_VALUE = "ADD_QUERY_VALUE";
 
 export const addFavouriteAction = (azienda) => {
   return { type: ADD_TO_FAVOURITES, payload: azienda };
@@ -15,12 +14,8 @@ export const addJobsToArrayAction = (jobs) => {
   return { type: ADD_JOBS_TO_ARRAY, payload: jobs };
 };
 
-export const addQueryValue = (value) => {
-  return { type: ADD_QUERY_VALUE, payload: value };
-};
-
 export const getJobsAction = (query) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?search=" + query + "&limit=20");
       if (response.ok) {
